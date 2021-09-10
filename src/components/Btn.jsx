@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Btn = ({ text, clickHandler, admin }) => {
+const Btn = ({ text, clickHandler, admin, type, value }) => {
   const classes = useStyles();
   return (
     <>
@@ -28,6 +28,8 @@ const Btn = ({ text, clickHandler, admin }) => {
         variant="contained"
         className={admin ? `${classes.admin}` : `${classes.btn}`}
         onClick={clickHandler}
+        type={type}
+        value={value}
       >
         {text}
       </Button>

@@ -1,14 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import BtmBar from "./BtmBar";
-import NavBar from "./NavBar";
 import Container from "@material-ui/core/Container";
 import color from "../styles/color";
+import BtmBar from "./BtmBar";
+import NavBar from "./NavBar";
 
 const useStyles = makeStyles({
   root: {
     minWidth: "100vw",
-    minheiHeight: "100vh",
+    minHeight: "100vh",
   },
 });
 
@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
     <div className={classes.root}>
       <NavBar text={"CodeGen"} />
       {children}
-      <BtmBar text={"React & Contentful Headless CMS"} />
+      <BtmBar text={"React Firebase & Materail-UI by Amin Titi"} />
     </div>
   );
 };

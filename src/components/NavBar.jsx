@@ -10,7 +10,7 @@ import Logo from "./Logo";
 import Drawer from "./Drawer";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
-// import Links from "./Links";
+import Links from "./Links";
 
 const useStyles = makeStyles((theme) => ({
   tlbr: {
@@ -59,12 +59,12 @@ const BtmBar = ({ text }) => {
           <Btn text={"Administratör"} className={classes.btn} admin />
         </Toolbar>
         <Toolbar variant="dense" className={classes.tlbr}>
-          {/* <Box className={classes.box}>
+          <Box className={classes.box}>
             <Links text={"Senaste-Nytt"} />
             <Links text={"Politik"} />
             <Links text={"idrott"} />
             <Links text={"Samhälle"} />
-          </Box> */}
+          </Box>
 
           <IconButton
             edge="start"

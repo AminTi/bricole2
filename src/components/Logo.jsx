@@ -9,15 +9,23 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bolder",
     fontSize: "23px",
   },
-  note: { color: color.green },
+  note: { color: color.red },
+
+  newroot: {
+    color: color.black,
+    fontWeight: "bolder",
+    fontSize: "34px",
+  },
 }));
 
-const Logo = () => {
+const Logo = ({ large }) => {
   const classes = useStyles();
+
+  let chng = large ? "newroot" : "root";
   return (
     <>
-      <Typography className={classes.root}>
-        Br <span className={classes.note}>I</span>cole
+      <Typography className={large ? classes.newroot : classes.root}>
+        <span className={classes.note}>Notre</span>Quotidien
       </Typography>
     </>
   );

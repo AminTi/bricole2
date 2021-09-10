@@ -3,13 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Layout from "./components/Layout";
 import { BrowserRouter } from "react-router-dom";
+import Layout from "./components/Layout";
+import UserContenxtProvider from "./context/UserContextProvider";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserContenxtProvider>
+        <Layout>
+          <App />
+        </Layout>
+      </UserContenxtProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
