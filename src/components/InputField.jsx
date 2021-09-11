@@ -32,10 +32,11 @@ const InputField = ({
 }) => {
   const classes = useStyles();
 
-  const TextArea = multiline ? 10 : null;
+  const TextArea = multiline ? 6 : null;
   return (
     <>
       <TextField
+        id="outlined-basic"
         name={name}
         type={type}
         onChange={onChange}

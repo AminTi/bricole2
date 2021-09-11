@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import Container from "@material-ui/core/Container";
 import color from "../styles/color";
@@ -8,7 +8,9 @@ import Btn from "./Btn";
 import Box from "@material-ui/core/Box";
 import Snackbars from "./SnackBar";
 import UserKit from "../data/UserKit";
+import { useHistory } from "react-router-dom";
 import fire from "../config/fire";
+import { UserContext } from "../context/UserContextProvider";
 
 const useStyles = makeStyles((theme) => ({
   spacer: {
@@ -53,6 +55,8 @@ const LoginFrom = () => {
   const [passwordCheck, setPasswordCheck] = useState(false);
   const mailformat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
   const userKit = new UserKit();
+  const history = useHistory();
+  const { check } = useContext(UserContext);
 
   const formClickHandler = (e) => {
     e.preventDefault();
@@ -61,11 +65,20 @@ const LoginFrom = () => {
     } else if (password != passwordConfim) {
       setPasswordCheck(true);
     } else {
-      userKit.signUp(email, password);
+      authListner();
     }
     setEmail("");
     setPassword("");
     setpasswordConfim("");
+  };
+
+  const authListner = () => {
+    userKit.signUp(email, password);
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        history.push("/profilpage");
+      }
+    });
   };
 
   return (

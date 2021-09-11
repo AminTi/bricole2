@@ -90,6 +90,18 @@ const BtmBar = ({ text }) => {
     }
   };
 
+  const subNavbar = () => {
+    if (check) {
+      return (
+        <Box className={classes.box}>
+          <Links to="/userprofilpage" text={"Profil"} />
+          <Links text={"Politik"} />
+          <Links text={"idrott"} />
+          <Links text={"Samhälle"} />
+        </Box>
+      );
+    }
+  };
   return (
     <>
       <AppBar position="static" className={classes.appBar}>
@@ -98,12 +110,7 @@ const BtmBar = ({ text }) => {
           {singInSingOut()}
         </Toolbar>
         <Toolbar variant="dense" className={classes.tlbr}>
-          <Box className={classes.box}>
-            <Links text={"Senaste-Nytt"} />
-            <Links text={"Politik"} />
-            <Links text={"idrott"} />
-            <Links text={"Samhälle"} />
-          </Box>
+          {subNavbar()}
 
           <IconButton
             edge="start"

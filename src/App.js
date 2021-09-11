@@ -5,6 +5,7 @@ import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
 import PanelPage from "./pages/PanelPage";
+import UserProfilPge from "./pages/UserProfilPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/signuppage" exact component={SignUpPage} />
         <Route path="/profilpage" exact component={ProfilePage} />
+        <Route path="/userprofilpage" exact component={UserProfilPge} />
       </Switch>
     </>
   );

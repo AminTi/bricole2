@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import Container from "@material-ui/core/Container";
+
 import color from "../styles/color";
 import { makeStyles } from "@material-ui/core/styles";
 import InputField from "./InputField";
@@ -8,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import Snackbars from "./SnackBar";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContextProvider";
+
 import UserKit from "../data/UserKit";
 import fire from "../config/fire";
 
@@ -52,7 +54,7 @@ const LoginFrom = () => {
   const [open, setOpen] = useState(false);
   const userKit = new UserKit();
   const mailformat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-  const { check, amin } = useContext(UserContext);
+  const { check } = useContext(UserContext);
 
   const formClickHandler = async (e) => {
     e.preventDefault();

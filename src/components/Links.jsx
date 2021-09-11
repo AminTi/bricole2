@@ -12,11 +12,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Links = ({ text }) => {
+const Links = ({ text, to }) => {
   const classes = useStyles();
   return (
     <>
-      <Link className={classes.link}>{text}</Link>
+      <Link to={to} className={classes.link}>
+        {text}
+      </Link>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import Container from "@material-ui/core/Container";
 import color from "../styles/color";
@@ -8,8 +8,10 @@ import Btn from "./Btn";
 import Box from "@material-ui/core/Box";
 import Snackbars from "./SnackBar";
 import UserKit from "../data/UserKit";
+
 import fire from "../config/fire";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/UserContextProvider";
 
 const useStyles = makeStyles((theme) => ({
   spacer: {
@@ -44,47 +46,74 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfilForm = () => {
+const ProfilForm = ({ values }) => {
   const classes = useStyles();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState("");
+
   const [adress, setAdress] = useState("");
   const [city, setCity] = useState("");
   const [company, setCompany] = useState(null);
   const [open, setOpen] = useState(false);
-  const [checkpassword, setCheckPass] = useState(false);
+
   const mailformat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  const userKit = new UserKit();
   const history = useHistory();
+  const { check, profilData, getCollection } = useContext(UserContext);
 
   const formClickHandler = (e) => {
     e.preventDefault();
-    if (!mailformat.test(email)) {
+    if (values) {
+      history.push("/profilpage");
+    } else if (!mailformat.test(email)) {
       setOpen(true);
     } else if (city.length < 1) {
       setOpen(true);
     } else if (adress.length < 1) {
       setOpen(true);
-    } else if (password.length < 8) {
-      checkpassword(true);
     } else if (firstName.length < 1) {
       setOpen(true);
     } else if (lastName.length < 1) {
       setOpen(true);
     } else {
-      console.log("");
+      collection();
     }
-
     setEmail("");
-    setPassword("");
+    setAdress("");
+    setCity("");
+    setFirstName("");
+    setLastName("");
+  };
+
+  useEffect(() => {
+    if (check) {
+      values && getCollection("users", check.uid);
+    }
+  }, []);
+
+  const collection = () => {
+    let payload = {
+      firstname: firstName,
+      lastname: lastName,
+      email: email,
+      company: company,
+      adress: adress,
+      city: city,
+      id: check.uid,
+    };
+    let uid = check.uid;
+    userKit.CreateCollection("users", uid, payload);
+    payload && history.push("/panelpage");
   };
 
   return (
     <>
       <form className={classes.form} onSubmit={formClickHandler}>
         <InputField
-          value={firstName}
+          value={
+            values ? profilData && profilData.payload.firstname : firstName
+          }
           placeholder={"First Name"}
           onChange={(e) => setFirstName(e.target.value)}
           type="text"
@@ -94,35 +123,35 @@ const ProfilForm = () => {
           placeholder={"Last Name"}
           onChange={(e) => setLastName(e.target.value)}
           type="text"
-          value={lastName}
+          value={values ? profilData && profilData.payload.lastname : lastName}
         />
         <InputField
           placeholder={"Example@example.se"}
           onChange={(e) => setEmail(e.target.value)}
           type="text"
-          value={email}
+          value={values ? profilData && profilData.payload.email : email}
         />
         <InputField
           placeholder={"Company"}
           onChange={(e) => setCompany(e.target.value)}
           type="text"
-          value={company}
+          value={values ? profilData && profilData.payload.company : company}
         />
         <InputField
           placeholder={"Adress"}
           onChange={(e) => setAdress(e.target.value)}
           type="text"
-          value={adress}
+          value={values ? profilData && profilData.payload.adress : adress}
         />
         <InputField
           placeholder={"City"}
           onChange={(e) => setCity(e.target.value)}
           type="text"
-          value={city}
+          value={values ? profilData && profilData.payload.city : city}
         />
         <Container className={classes.btn}>
           <Btn
-            text={"Sign up"}
+            text={values ? "update" : "Submit"}
             value="Submit"
             type="submit"
             clickHandler={() => null}
@@ -135,12 +164,6 @@ const ProfilForm = () => {
         closeBar={setOpen}
         severity={"error"}
         text={"Please check email format, all field are required"}
-      />
-      <Snackbars
-        openBar={checkpassword}
-        closeBar={setCheckPass}
-        severity={"error"}
-        text={"The password should contain at least 4 distinct characters"}
       />
 
       <Box className={classes.spacer2} />

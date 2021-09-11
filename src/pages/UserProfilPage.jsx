@@ -1,13 +1,12 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import LoginFrom from "../components/LoginFrom";
+import ProfilForm from "../components/ProfilForm";
 import Wrapper from "../components/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Logo from "../components/Logo";
 import { Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import Modal from "../components/Modal";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -28,21 +27,22 @@ const useStyles = makeStyles((theme) => ({
     outline: "none",
   },
 }));
-const PanelPage = () => {
+const ProfilePage = () => {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Modal />
-        Panel
-      </Grid>
-    </div>
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      className={classes.container}
+    >
+      <Box className={classes.spacer1} />
+      <Logo large />
+      <Box className={classes.spacer2} />
+      <ProfilForm values />
+    </Grid>
   );
 };
 
-export default PanelPage;
+export default ProfilePage;

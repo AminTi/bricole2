@@ -12,4 +12,12 @@ export default class {
   async LogOut() {
     await fire.auth().signOut();
   }
+
+  CreateCollection(collection, uid, payload) {
+    fire.firestore().collection(collection).doc(uid).set({ payload });
+  }
+
+  createAds(data) {
+    fire.firestore().collection("advertising").add(data);
+  }
 }
