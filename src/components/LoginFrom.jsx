@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import color from "../styles/color";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,6 +7,9 @@ import Btn from "./Btn";
 import Box from "@material-ui/core/Box";
 import Snackbars from "./SnackBar";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/UserContextProvider";
+import UserKit from "../data/UserKit";
+import fire from "../config/fire";
 
 const useStyles = makeStyles((theme) => ({
   spacer: {
@@ -43,24 +46,37 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginFrom = () => {
   const classes = useStyles();
-  const [email, setEmail] = useState(null);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
   const [open, setOpen] = useState(false);
+  const userKit = new UserKit();
   const mailformat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  const { check, amin } = useContext(UserContext);
 
-  const formClickHandler = (e) => {
+  const formClickHandler = async (e) => {
     e.preventDefault();
     if (!mailformat.test(email)) {
       setOpen(true);
     } else if (password.length < 5) {
       setOpen(true);
     } else {
-      history.push("/profilpage");
+      logincheck();
     }
-    setEmail("");
-    setPassword("");
   };
+
+  const logincheck = () => {
+    userKit.signIn(email, password);
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        history.push("/panelpage");
+      }
+    });
+  };
+
+  useEffect(() => {
+    // logincheck();
+  }, []);
 
   return (
     <>
@@ -80,7 +96,7 @@ const LoginFrom = () => {
         <Container className={classes.btn}>
           <Btn
             text={"Log in"}
-            value="Submit"
+            value="submit"
             type="submit"
             clickHandler={() => null}
           />

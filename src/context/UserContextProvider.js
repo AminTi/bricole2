@@ -5,14 +5,15 @@ import { useHistory } from "react-router";
 export const UserContext = createContext({});
 
 const UserContenxtProvider = ({ children }) => {
-  const [user, setUser] = useState("");
+  const [check, setCheck] = useState("");
+  const [amin, setamin] = useState("amin");
 
   const authListnner = () => {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        setUser(user);
+        setCheck(user);
       } else {
-        setUser(user);
+        setCheck(user);
       }
     });
   };
@@ -21,7 +22,11 @@ const UserContenxtProvider = ({ children }) => {
     authListnner();
   }, []);
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ check, amin }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export default UserContenxtProvider;

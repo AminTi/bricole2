@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const BtmBar = ({ text }) => {
   const classes = useStyles();
+
   return (
     <>
       <AppBar position="static" className={classes.appBar}>
