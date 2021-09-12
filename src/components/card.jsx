@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import color from "../styles/color";
+import Paper from "@material-ui/core/Paper";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -16,7 +17,10 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-
+import DeleteIcon from "@material-ui/icons/Delete";
+import EmailIcon from "@material-ui/icons/Email";
+import DetailsIcon from "@material-ui/icons/Details";
+import Btn from "./Btn";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 300,
@@ -36,10 +40,9 @@ const useStyles = makeStyles((theme) => ({
 
   text: {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: color.green,
-    color: color.white,
+    justifyContent: "space-between",
+
+    background: color.lightRed,
   },
 
   Typography: {
@@ -50,25 +53,49 @@ const useStyles = makeStyles((theme) => ({
     color: color.white,
     fontWeight: "bold",
   },
+  cardHeader: {
+    background: color.lightRed,
+  },
+  delete: {
+    color: "red",
+  },
+  details: {
+    color: color.green,
+  },
+  hide: {
+    display: "none",
+  },
 }));
 
-export default function RecipeReviewCard({ photo, key, text, url }) {
+export default function RecipeReviewCard({
+  photo,
+  key,
+  text,
+  url,
+  profession,
+  hide,
+}) {
   const classes = useStyles();
+
   return (
     <>
       <Card className={classes.root} key={key}>
+        <CardHeader
+          title={""}
+          subheader={profession}
+          className={classes.cardHeader}
+        />
+
         <a href={url} target="_blank" className={classes.atag}>
           <CardMedia className={classes.media} image={photo} title={text} />
 
           <CardContent className={classes.text}>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="p"
-              className={classes.Typography}
-            >
-              <Typography className={classes.atag}>{text}</Typography>
-            </Typography>
+            <IconButton className={hide ? classes.hide : classes.details}>
+              <DetailsIcon />
+            </IconButton>
+            <IconButton>
+              <DeleteIcon className={hide ? classes.hide : classes.delete} />
+            </IconButton>
           </CardContent>
         </a>
       </Card>

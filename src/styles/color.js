@@ -5,4 +5,5 @@ export default {
   ofwhite: "FAF9F19",
   red: "#d22d27",
   green: "rgb(0, 107, 77)",
+  lightRed: "#f7f0f0",
 };

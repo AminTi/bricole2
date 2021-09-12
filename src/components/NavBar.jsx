@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
   tlbr: {
     background: color.green,
   },
-  menuButton: {
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
-  },
+  // menuButton: {
+  //   [theme.breakpoints.up("sm")]: {
+  //     display: "none",
+  //   },
+  // },
 
   tlbr2: {
     display: "flex",
@@ -38,16 +38,16 @@ const useStyles = makeStyles((theme) => ({
       padinng: "5px 10px",
     },
   },
-  box: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-      margin: "0 auto",
-    },
-  },
+  // box: {
+  //   display: "none",
+  //   [theme.breakpoints.up("sm")]: {
+  //     display: "block",
+  //     margin: "0 auto",
+  //   },
+  // },
 }));
 
-const BtmBar = ({ text }) => {
+const NavBar = ({ text }) => {
   const classes = useStyles();
   const [openDrawer, setOpen] = React.useState(false);
   const userKit = new UserKit();
@@ -90,18 +90,6 @@ const BtmBar = ({ text }) => {
     }
   };
 
-  const subNavbar = () => {
-    if (check) {
-      return (
-        <Box className={classes.box}>
-          <Links to="/userprofilpage" text={"Profil"} />
-          <Links text={"Politik"} />
-          <Links text={"idrott"} />
-          <Links text={"Samhälle"} />
-        </Box>
-      );
-    }
-  };
   return (
     <>
       <AppBar position="static" className={classes.appBar}>
@@ -110,8 +98,6 @@ const BtmBar = ({ text }) => {
           {singInSingOut()}
         </Toolbar>
         <Toolbar variant="dense" className={classes.tlbr}>
-          {subNavbar()}
-
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -128,4 +114,4 @@ const BtmBar = ({ text }) => {
   );
 };
 
-export default BtmBar;
+export default NavBar;

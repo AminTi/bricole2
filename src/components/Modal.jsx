@@ -30,7 +30,7 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: "5%",
+    marginTop: "2%",
     margin: "0 auto",
     width: "50%",
     backgroundColor: theme.palette.background.paper,
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "5%",
+    marginTop: "1%",
   },
   closewrp: {
     marginLeft: "auto",
@@ -75,19 +75,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal() {
+export default function SimpleModal({ open, setOpen }) {
   const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState();
-  const [open, setOpen] = React.useState(false);
   const [err, setErr] = React.useState(false);
-
   const [title, setTitle] = useState("");
   const [profession, setProfesstion] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const { check, tester } = useContext(UserContext);
+  const { check, tester, GetAds } = useContext(UserContext);
   const userKit = new UserKit();
 
   const handleOpen = () => {
@@ -100,21 +96,22 @@ export default function SimpleModal() {
 
   const formClickHandler = (e) => {
     e.preventDefault();
-    // if (title.length < 2) {
-    //   setErr(true);
-    // } else if (profession.length < 2) {
-    //   setErr(true);
-    // } else if (image.length < 2) {
-    //   setErr(true);
-    // } else if (description.length < 2) {
-    //   setErr(true);
-    // } else if (price.length < 2) {
-    //   setErr(true);
-    // } else {
-    //   collection();
-    // }
+    if (title.length < 2) {
+      setErr(true);
+    } else if (profession.length < 2) {
+      setErr(true);
+    } else if (!image) {
+      setErr(true);
+    } else if (description.length < 2) {
+      setErr(true);
+    } else if (price.length < 2) {
+      setErr(true);
+    } else {
+      collection();
 
-    collection();
+      setOpen(false);
+    }
+
     setTitle("");
     setProfesstion("");
     setImage("");
@@ -143,6 +140,7 @@ export default function SimpleModal() {
     if (check) {
       data && (await userKit.createAds(data));
     }
+    GetAds();
   };
 
   useEffect(() => {}, []);
@@ -201,10 +199,7 @@ export default function SimpleModal() {
   );
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
+    <>
       <Modal
         className={classes.modal}
         open={open}
@@ -220,6 +215,6 @@ export default function SimpleModal() {
         severity={"error"}
         text={" All fields are required"}
       />
-    </div>
+    </>
   );
 }

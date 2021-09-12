@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
-
 import { makeStyles } from "@material-ui/core/styles";
 import color from "../styles/color";
 
@@ -49,36 +48,36 @@ export default function Drawer({ openDrawer, setOpen }) {
   const ItemList = [
     {
       text: (
-        <Link href="/" className={classes.links}>
+        <Link to="/" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            Startsida
+            HOME
           </Typography>
         </Link>
       ),
     },
     {
       text: (
-        <Link href="/Idrott" className={classes.links}>
+        <Link to="/panelpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            Idrott
+            PANEL
           </Typography>
         </Link>
       ),
     },
     {
       text: (
-        <Link href="/Politik" className={classes.links}>
+        <Link to="/profilpge" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            Politik
+            PROFIL
           </Typography>
         </Link>
       ),
     },
     {
       text: (
-        <Link href="/Samhälle" className={classes.links}>
+        <Link to="/inboxpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            Samhälle
+            INBOX
           </Typography>
         </Link>
       ),

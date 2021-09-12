@@ -7,6 +7,9 @@ export const UserContext = createContext({});
 const UserContenxtProvider = ({ children }) => {
   const [check, setCheck] = useState("");
   const [profilData, setProfilData] = useState("");
+  const [adsData, setAdsData] = useState([]);
+  let arr = [];
+  let adsArr = [];
 
   const authListnner = () => {
     fire.auth().onAuthStateChanged((user) => {
@@ -33,22 +36,33 @@ const UserContenxtProvider = ({ children }) => {
       });
   };
 
-  const tester = async (data) => {
-    const file = data.image[0];
-    const storagRef = fire.storage().ref();
-    const fileRef = storagRef.child(data.image[0].name);
-    await fileRef.put(data.image[0]);
-    const fileUrl = await fileRef.getDownloadURL();
+  const GetAds = async () => {
+    await fire
+      .firestore()
+      .collection("advertising")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc, key) => {
+          // doc.data() is never undefined for query doc snapshots => Notice
+          let payload = {
+            title: doc.data().title,
+            profession: doc.data().profession,
+            image: doc.data().image,
+            description: doc.data().description,
+            price: doc.data().price,
+            id: doc.data().id,
+          };
 
-    const payload = {
-      avatar: fileUrl,
-    };
-
-    await fire.firestore().collection("advertising").add({ payload });
+          adsArr.push({ ...payload });
+        });
+        setAdsData(adsArr);
+      });
   };
 
   return (
-    <UserContext.Provider value={{ check, profilData, getCollection, tester }}>
+    <UserContext.Provider
+      value={{ check, profilData, adsData, getCollection, GetAds, arr }}
+    >
       {children}
     </UserContext.Provider>
   );
