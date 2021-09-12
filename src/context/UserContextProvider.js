@@ -8,7 +8,7 @@ const UserContenxtProvider = ({ children }) => {
   const [check, setCheck] = useState("");
   const [profilData, setProfilData] = useState("");
   const [adsData, setAdsData] = useState([]);
-  let arr = [];
+  let arr = ["titi"];
   let adsArr = [];
 
   const authListnner = () => {
@@ -54,8 +54,10 @@ const UserContenxtProvider = ({ children }) => {
           };
 
           adsArr.push({ ...payload });
+          console.log("hej");
         });
         setAdsData(adsArr);
+        console.log("Amin");
       });
   };
 

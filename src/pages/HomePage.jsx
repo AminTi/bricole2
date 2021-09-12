@@ -41,12 +41,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 const HomePage = () => {
   const classes = useStyles();
-  const { adsArr, GetAds } = useContext(UserContext);
+  const { adsData, GetAds } = useContext(UserContext);
 
   useEffect(() => {
     GetAds();
   }, []);
-  console.log(adsArr);
 
   return (
     <Container className={classes.container}>
@@ -54,13 +53,14 @@ const HomePage = () => {
         <Logo large />
       </Container>
       <div className={classes.cardWrapper}>
-        {adsArr &&
-          adsArr.map((item, index) => {
+        {adsData &&
+          adsData.map((item, index) => {
             return (
               <Card
                 key={index}
                 photo={item.image}
                 profession={item.profession}
+                hide
               />
             );
           })}

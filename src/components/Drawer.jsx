@@ -66,7 +66,7 @@ export default function Drawer({ openDrawer, setOpen }) {
     },
     {
       text: (
-        <Link to="/profilpge" className={classes.links}>
+        <Link to="/userprofilpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
             PROFIL
           </Typography>
@@ -78,6 +78,15 @@ export default function Drawer({ openDrawer, setOpen }) {
         <Link to="/inboxpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
             INBOX
+          </Typography>
+        </Link>
+      ),
+    },
+    {
+      text: (
+        <Link to="/" className={classes.links}>
+          <Typography variant="h6" className={classes.links1}>
+            BOOKINGS
           </Typography>
         </Link>
       ),

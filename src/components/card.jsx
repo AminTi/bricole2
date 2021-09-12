@@ -90,7 +90,7 @@ export default function RecipeReviewCard({
           <CardMedia className={classes.media} image={photo} title={text} />
 
           <CardContent className={classes.text}>
-            <IconButton className={hide ? classes.hide : classes.details}>
+            <IconButton className={classes.details}>
               <DetailsIcon />
             </IconButton>
             <IconButton>

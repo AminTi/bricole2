@@ -90,6 +90,12 @@ const NavBar = ({ text }) => {
     }
   };
 
+  const UserCheck = () => {
+    if (check) {
+      return <Drawer openDrawer={openDrawer} setOpen={setOpen} />;
+    }
+  };
+
   return (
     <>
       <AppBar position="static" className={classes.appBar}>
@@ -98,16 +104,18 @@ const NavBar = ({ text }) => {
           {singInSingOut()}
         </Toolbar>
         <Toolbar variant="dense" className={classes.tlbr}>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={MenuHandler}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Drawer openDrawer={openDrawer} setOpen={setOpen} />
+          {check ? (
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={MenuHandler}
+            >
+              <MenuIcon />
+            </IconButton>
+          ) : null}
+          {UserCheck()}
         </Toolbar>
       </AppBar>
     </>
