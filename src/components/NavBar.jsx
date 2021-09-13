@@ -26,16 +26,21 @@ const useStyles = makeStyles((theme) => ({
   // },
 
   tlbr2: {
+    // display: "flex",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // background: color.white,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
     background: color.white,
+    padinng: "5px 10px",
     [theme.breakpoints.up("sm")]: {
-      display: "flex",
-      justifyContent: "space-between",
-      flexDirection: "row",
-      background: color.white,
-      padinng: "5px 10px",
+      // display: "flex",
+      // justifyContent: "space-between",
+      // flexDirection: "row",
+      // background: color.white,
+      // padinng: "5px 10px",
     },
   },
   // box: {
@@ -75,7 +80,7 @@ const NavBar = ({ text }) => {
           clickHandler={clickHandler}
           text={"Log in"}
           className={classes.btn}
-          admin
+          // admin
         />
       );
     }

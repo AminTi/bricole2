@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   admin: {
-    display: "none",
+    display: "block",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
