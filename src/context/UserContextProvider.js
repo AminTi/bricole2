@@ -8,6 +8,8 @@ const UserContenxtProvider = ({ children }) => {
   const [check, setCheck] = useState("");
   const [profilData, setProfilData] = useState("");
   const [adsData, setAdsData] = useState([]);
+  const [getLocalStorg, setGetLocalStorage] = useState([]);
+
   let arr = ["titi"];
   let adsArr = [];
 
@@ -51,19 +53,28 @@ const UserContenxtProvider = ({ children }) => {
             description: doc.data().description,
             price: doc.data().price,
             id: doc.data().id,
+            city: doc.data().city,
+            docID: doc.id,
           };
 
           adsArr.push({ ...payload });
-          console.log("hej");
         });
         setAdsData(adsArr);
-        console.log("Amin");
       });
   };
 
   return (
     <UserContext.Provider
-      value={{ check, profilData, adsData, getCollection, GetAds, arr }}
+      value={{
+        check,
+        profilData,
+        adsData,
+        getLocalStorg,
+        setGetLocalStorage,
+        getCollection,
+        GetAds,
+        arr,
+      }}
     >
       {children}
     </UserContext.Provider>

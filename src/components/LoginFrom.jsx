@@ -9,7 +9,6 @@ import Box from "@material-ui/core/Box";
 import Snackbars from "./SnackBar";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContextProvider";
-
 import UserKit from "../data/UserKit";
 import fire from "../config/fire";
 

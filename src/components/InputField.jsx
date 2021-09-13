@@ -6,7 +6,6 @@ import color from "../styles/color";
 const useStyles = makeStyles({
   input: {
     background: color.white,
-    // border: `1px solid ${color.green}`,
     margin: "1%",
     borderRadius: "5px",
 

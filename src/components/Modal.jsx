@@ -83,7 +83,8 @@ export default function SimpleModal({ open, setOpen }) {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const { check, tester, GetAds } = useContext(UserContext);
+  const { check, tester, GetAds, getCollection, profilData } =
+    useContext(UserContext);
   const userKit = new UserKit();
 
   const handleOpen = () => {
@@ -136,6 +137,7 @@ export default function SimpleModal({ open, setOpen }) {
       description: description,
       price: price,
       id: check.uid,
+      city: profilData.payload.city,
     };
     if (check) {
       data && (await userKit.createAds(data));
@@ -143,7 +145,9 @@ export default function SimpleModal({ open, setOpen }) {
     GetAds();
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getCollection("users", check.uid);
+  }, []);
 
   const body = (
     <div className={classes.paper}>

@@ -8,6 +8,7 @@ import Card from "../components/card";
 import { Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContextProvider";
+import SelectBoxBar from "../components/SelectBoxBar";
 const useStyles = makeStyles((theme) => ({
   container: {
     minWidth: "100vw",
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
 
     padding: "20px 0px",
+    margin: "2%",
   },
   cardWrapper: {
     display: "flex",
@@ -38,23 +40,42 @@ const useStyles = makeStyles((theme) => ({
     margin: "5%",
     background: color.white,
   },
+  wrp: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 const HomePage = () => {
   const classes = useStyles();
-  const { adsData, GetAds } = useContext(UserContext);
+  const { adsData, GetAds, getLocalStorg } = useContext(UserContext);
 
   useEffect(() => {
     GetAds();
   }, []);
+
+  const filterData = adsData.filter((item) => {
+    return item.city === getLocalStorg || item.profession === getLocalStorg;
+  });
+
+  console.log(filterData);
+
+  const DatCheck = () => {
+    if (filterData.length == 0) {
+      return adsData;
+    } else {
+      return filterData;
+    }
+  };
 
   return (
     <Container className={classes.container}>
       <Container className={classes.logoWrp}>
         <Logo large />
       </Container>
+      <SelectBoxBar data={adsData} />
       <div className={classes.cardWrapper}>
         {adsData &&
-          adsData.map((item, index) => {
+          DatCheck().map((item, index) => {
             return (
               <Card
                 key={index}
