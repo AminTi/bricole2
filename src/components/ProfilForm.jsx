@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
       minWidth: "70%",
     },
     [theme.breakpoints.down("xs")]: {
-      minWidth: "100%",
+      minWidth: "80%",
     },
   },
   btn: {
