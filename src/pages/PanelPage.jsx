@@ -75,6 +75,7 @@ const PanelPage = () => {
     return item.id == check.uid;
   });
 
+  console.log(filterData);
   return (
     <div className={classes.container}>
       <Container className={classes.containerFab}>
@@ -90,6 +91,8 @@ const PanelPage = () => {
                 key={index}
                 photo={item.image}
                 profession={item.profession}
+                id={item.docID}
+                show
               />
             );
           })}

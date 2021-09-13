@@ -20,4 +20,9 @@ export default class {
   createAds(data) {
     fire.firestore().collection("advertising").add(data);
   }
+  deleteData(data, collectionName) {
+    if (data) {
+      fire.firestore().collection(collectionName).doc(data).delete();
+    }
+  }
 }

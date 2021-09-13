@@ -19,9 +19,14 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
+
+  size: {
+    color: color.white,
+    background: color.green,
+  },
 }));
 
-const Btn = ({ text, clickHandler, admin, type, value, path }) => {
+const Btn = ({ text, clickHandler, admin, type, value, path, size }) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -29,7 +34,13 @@ const Btn = ({ text, clickHandler, admin, type, value, path }) => {
     <>
       <Button
         variant="contained"
-        className={admin ? `${classes.admin}` : `${classes.btn}`}
+        className={
+          admin
+            ? `${classes.admin}`
+            : size
+            ? `${classes.size}`
+            : `${classes.btn}`
+        }
         onClick={clickHandler}
         type={type}
         value={value}
