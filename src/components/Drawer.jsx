@@ -75,7 +75,7 @@ export default function Drawer({ openDrawer, setOpen }) {
     },
     {
       text: (
-        <Link to="/inboxpage" className={classes.links}>
+        <Link to="/emailspage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
             INBOX
           </Typography>

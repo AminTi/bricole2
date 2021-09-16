@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import color from "../styles/color";
@@ -9,6 +9,7 @@ import { Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContextProvider";
 import SelectBoxBar from "../components/SelectBoxBar";
+import ModalEmail from "../components/ModalEmail";
 const useStyles = makeStyles((theme) => ({
   container: {
     minWidth: "100vw",
@@ -47,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const HomePage = () => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [ID, setID] = useState("");
   const { adsData, GetAds, getLocalStorg } = useContext(UserContext);
 
   useEffect(() => {
@@ -57,14 +60,17 @@ const HomePage = () => {
     return item.city === getLocalStorg || item.profession === getLocalStorg;
   });
 
-  console.log(filterData);
-
-  const DatCheck = () => {
+  const DataCheck = () => {
     if (filterData.length == 0) {
       return adsData;
     } else {
       return filterData;
     }
+  };
+  const clickHandler = (e) => {
+    const id = e.currentTarget.getAttribute("data-del");
+    setOpen(true);
+    setID(ID);
   };
 
   return (
@@ -75,17 +81,21 @@ const HomePage = () => {
       <SelectBoxBar data={adsData} />
       <div className={classes.cardWrapper}>
         {adsData &&
-          DatCheck().map((item, index) => {
+          DataCheck().map((item, index) => {
             return (
               <Card
                 key={index}
                 photo={item.image}
+                cuurentId={item.id}
                 profession={item.profession}
+                emailClickHandler={clickHandler}
+                setOpen={setOpen}
                 hide
               />
             );
           })}
       </div>
+      <ModalEmail open={open} setOpen={setOpen} id={ID} />
     </Container>
   );
 };

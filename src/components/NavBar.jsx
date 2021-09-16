@@ -80,7 +80,7 @@ const NavBar = ({ text }) => {
           clickHandler={clickHandler}
           text={"Log in"}
           className={classes.btn}
-          // admin
+          admin
         />
       );
     }

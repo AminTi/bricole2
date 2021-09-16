@@ -6,6 +6,8 @@ import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
 import PanelPage from "./pages/PanelPage";
 import UserProfilPge from "./pages/UserProfilPage";
+import EmailsPage from "./pages/EmailsPage";
+import EmailsList from "./components/EmailsList";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/signuppage" exact component={SignUpPage} />
         <Route path="/profilpage" exact component={ProfilePage} />
         <Route path="/userprofilpage" exact component={UserProfilPge} />
+        <Route path="/emailspage" exact component={EmailsPage} />
+        <Route path="/emailslistpage" exact component={EmailsList} />
       </Switch>
     </>
   );

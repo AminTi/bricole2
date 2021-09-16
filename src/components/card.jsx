@@ -10,6 +10,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EmailIcon from "@material-ui/icons/Email";
 import DetailsIcon from "@material-ui/icons/Details";
 import Btn from "./Btn";
+import Box from "@material-ui/core/Box";
 import UserKit from "../data/UserKit";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,12 +18,12 @@ const useStyles = makeStyles((theme) => ({
     width: 300,
     margin: "1%",
     borderRadius: "10px",
-    "&:hover": {
-      opacity: "0.4",
-    },
-    [theme.breakpoints.down("sm")]: {
-      margin: "2%",
-    },
+    // "&:hover": {
+    //   opacity: "0.4",
+    // },
+    // [theme.breakpoints.down("sm")]: {
+    //   margin: "2%",
+    // },
   },
   media: {
     height: 200,
@@ -31,10 +32,17 @@ const useStyles = makeStyles((theme) => ({
 
   text: {
     display: "flex",
-    justifyContent: "space-between",
-
+    flexDirection: "row",
+    justifyContent: "space-around",
     background: color.lightRed,
+    [theme.breakpoints.down("xs")]: {},
   },
+  // box: {
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   justifyContent: "space-between",
+  //   width: "100%",
+  // },
 
   Typography: {
     color: color.white,
@@ -77,6 +85,7 @@ export default function RecipeReviewCard({
   hide,
   show,
   id,
+  emailClickHandler,
 }) {
   const classes = useStyles();
   const userKit = new UserKit();
@@ -86,7 +95,6 @@ export default function RecipeReviewCard({
     if (id) {
       userKit.deleteData(id, "advertising");
     }
-    console.log("hej");
   };
 
   return (
@@ -112,11 +120,15 @@ export default function RecipeReviewCard({
                 onClick={DeleteHandler}
               />
             </IconButton>
-            <IconButton className={show ? classes.show : classes.email}>
+            <IconButton
+              className={show ? classes.show : classes.email}
+              onClick={emailClickHandler}
+            >
               <EmailIcon />
             </IconButton>
+
             <IconButton className={show ? classes.show : classes.null}>
-              <Btn text={"Reservation"} size hide />
+              <Btn text={"Reserve"} size hide />
             </IconButton>
           </CardContent>
         </a>

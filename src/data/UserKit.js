@@ -17,8 +17,8 @@ export default class {
     fire.firestore().collection(collection).doc(uid).set({ payload });
   }
 
-  createAds(data) {
-    fire.firestore().collection("advertising").add(data);
+  createAds(data, collection) {
+    fire.firestore().collection(collection).add(data);
   }
   deleteData(data, collectionName) {
     if (data) {

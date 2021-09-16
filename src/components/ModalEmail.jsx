@@ -30,7 +30,7 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: "2%",
+    marginTop: "10%",
     margin: "0 auto",
     width: "50%",
     backgroundColor: theme.palette.background.paper,
@@ -75,16 +75,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal({ open, setOpen }) {
+export default function ModalEmail({ open, setOpen, id }) {
   const classes = useStyles();
   const [err, setErr] = React.useState(false);
   const [title, setTitle] = useState("");
-  const [profession, setProfesstion] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const { check, tester, GetAds, getCollection, profilData } =
-    useContext(UserContext);
+  const [Email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const { check } = useContext(UserContext);
   const userKit = new UserKit();
 
   const handleOpen = () => {
@@ -99,55 +97,32 @@ export default function SimpleModal({ open, setOpen }) {
     e.preventDefault();
     if (title.length < 2) {
       setErr(true);
-    } else if (profession.length < 2) {
+    } else if (message.length < 2) {
       setErr(true);
-    } else if (!image) {
-      setErr(true);
-    } else if (description.length < 2) {
-      setErr(true);
-    } else if (price.length < 2) {
+    } else if (Email.length < 2) {
       setErr(true);
     } else {
       collection();
-
       setOpen(false);
     }
 
     setTitle("");
-    setProfesstion("");
-    setImage("");
-    setDescription("");
-    setPrice("");
-  };
-
-  const onFileChange = async (e) => {
-    const file = e.target.files[0];
-    const storagRef = fire.storage().ref();
-    const fileRef = storagRef.child(file.name);
-    await fileRef.put(file);
-    const fileUrl = await fileRef.getDownloadURL();
-    setImage(fileUrl);
+    setMessage("");
+    setEmail("");
   };
 
   const collection = async () => {
     let data = {
       title: title,
-      profession: profession,
-      image: image,
-      description: description,
-      price: price,
-      id: check.uid,
-      city: profilData.payload.city,
+      message: message,
+      email: Email,
+      id: id,
     };
-    if (check) {
-      data && (await userKit.createAds(data, "advertising"));
-    }
-    GetAds();
+
+    (await data) && (await userKit.createAds(data, "emails"));
   };
 
-  useEffect(() => {
-    getCollection("users", check.uid);
-  }, []);
+  useEffect(() => {}, []);
 
   const body = (
     <div className={classes.paper}>
@@ -160,35 +135,24 @@ export default function SimpleModal({ open, setOpen }) {
         </IconButton>
         <Logo log />
         <InputField
+          placeholder={"Email"}
+          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          value={Email}
+        />
+        <InputField
           placeholder={"Title"}
           onChange={(e) => setTitle(e.target.value)}
           type="text"
           value={title}
         />
-        <InputField
-          placeholder={"Profession"}
-          onChange={(e) => setProfesstion(e.target.value)}
-          type="text"
-          value={profession}
-        />
-        <InputField
-          placeholder={"Price"}
-          onChange={(e) => setPrice(e.target.value)}
-          type="text"
-          value={price}
-        />
-        <InputField
-          name="Upload-photo"
-          placeholder={"Image"}
-          onChange={onFileChange}
-          type={"file"}
-        />
+
         <InputField
           multiline
-          placeholder={"description"}
-          onChange={(e) => setDescription(e.target.value)}
+          placeholder={"Message"}
+          onChange={(e) => setMessage(e.target.value)}
           type="text"
-          value={description}
+          value={message}
         />
         <Container className={classes.btn}>
           <Btn
