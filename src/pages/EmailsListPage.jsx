@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "@material-ui/core/Container";
 import SingUpForm from "../components/SingUpForm";
 import Wrapper from "../components/Wrapper";
@@ -8,7 +8,7 @@ import Logo from "../components/Logo";
 import { Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import EmailsList from "../components/EmailsList";
-// import { UserContext } from "../context/UserContextProvider";
+import { UserContext } from "../context/UserContextProvider";
 
 const useStyles = makeStyles((theme) => ({
   container: {

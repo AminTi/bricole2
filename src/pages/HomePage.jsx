@@ -68,9 +68,8 @@ const HomePage = () => {
     }
   };
   const clickHandler = (e) => {
-    const id = e.currentTarget.getAttribute("data-del");
     setOpen(true);
-    setID(ID);
+    console.log(ID);
   };
 
   return (
@@ -86,10 +85,11 @@ const HomePage = () => {
               <Card
                 key={index}
                 photo={item.image}
-                cuurentId={item.id}
                 profession={item.profession}
+                userId={item.id}
                 emailClickHandler={clickHandler}
                 setOpen={setOpen}
+                setid={setID}
                 hide
               />
             );

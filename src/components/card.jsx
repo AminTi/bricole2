@@ -86,6 +86,8 @@ export default function RecipeReviewCard({
   show,
   id,
   emailClickHandler,
+  setid,
+  userId,
 }) {
   const classes = useStyles();
   const userKit = new UserKit();
@@ -97,6 +99,7 @@ export default function RecipeReviewCard({
     }
   };
 
+  setid(userId);
   return (
     <>
       <Card className={classes.root} key={key}>

@@ -88,7 +88,7 @@ function EmailsList() {
                     <DeleteIcon
                       className={classes.delete}
                       onClick={DeleteHandler}
-                      data-del={row.emailId}
+                      data-del={id}
                     />
                   </IconButton>
                 </TableCell>

@@ -154,6 +154,7 @@ export default function ModalEmail({ open, setOpen, id }) {
           type="text"
           value={message}
         />
+
         <Container className={classes.btn}>
           <Btn
             text={"Submit"}
