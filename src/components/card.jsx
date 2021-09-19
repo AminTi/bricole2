@@ -99,7 +99,7 @@ export default function RecipeReviewCard({
     }
   };
 
-  setid(userId);
+  userId && setid(userId);
   return (
     <>
       <Card className={classes.root} key={key}>

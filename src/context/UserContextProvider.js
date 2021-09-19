@@ -9,9 +9,11 @@ const UserContenxtProvider = ({ children }) => {
   const [profilData, setProfilData] = useState("");
   const [adsData, setAdsData] = useState([]);
   const [getLocalStorg, setGetLocalStorage] = useState([]);
+  const [emails, setGetEmails] = useState([]);
 
-  let arr = ["titi"];
+  let arr = [];
   let adsArr = [];
+  let emailsData = [];
 
   const authListnner = () => {
     fire.auth().onAuthStateChanged((user) => {
@@ -63,6 +65,25 @@ const UserContenxtProvider = ({ children }) => {
       });
   };
 
+  const getEmails = async () => {
+    await fire
+      .firestore()
+      .collection("emails")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc, key) => {
+          let payload = {
+            emailId: doc.id,
+            title: doc.data().title,
+            email: doc.data().email,
+            userid: doc.data().id,
+            message: doc.data().message,
+          };
+          emailsData.push({ ...payload });
+        });
+        setGetEmails(emailsData);
+      });
+  };
   return (
     <UserContext.Provider
       value={{
@@ -70,10 +91,12 @@ const UserContenxtProvider = ({ children }) => {
         profilData,
         adsData,
         getLocalStorg,
+        emails,
+        arr,
+        getEmails,
         setGetLocalStorage,
         getCollection,
         GetAds,
-        arr,
       }}
     >
       {children}

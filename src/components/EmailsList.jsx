@@ -14,19 +14,20 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import UserKit from "../data/UserKit";
+import color from "../styles/color";
 
 const useStyles = makeStyles({
-  table: {
-    minWidth: "90%",
-  },
+  table: {},
   wrapper: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     padding: "20px 10px",
     // justifyContent: "center",
-    backgroundColor: "rgb(240, 245, 251)",
+    backgroundColor: color.white,
     minHeight: 800,
+    marginBottom: "5%",
   },
   delete: {
     color: "red",
@@ -39,27 +40,28 @@ function createData(index, email, Delete) {
 function EmailsList() {
   const classes = useStyles();
   const history = useHistory();
+  const userKit = new UserKit();
 
-  const { getemails, readEmails, user, deleteData } = useContext(UserContext);
+  const { check, emails, getEmails } = useContext(UserContext);
 
-  const id = user && user.uid;
-  const currentUser = readEmails.filter((elm) => {
+  const id = check && check.uid;
+  const currentUserEmails = emails.filter((elm) => {
     return elm.userid == id;
   });
   useEffect(() => {
-    getemails();
+    getEmails();
   }, []);
 
   const DeleteHandler = async (e) => {
     const id = e.currentTarget.getAttribute("data-del");
     if (id) {
-      await deleteData(id, "emails");
-      await getemails();
+      userKit.deleteData(id, "emails");
+      getEmails();
     }
   };
 
   return (
-    <Container className={classes.wrapper}>
+    <Container className={classes.wrapper} maxWidth="xl">
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -70,16 +72,13 @@ function EmailsList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {currentUser.map((row, index) => (
+            {currentUserEmails.map((row, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
                   {index}
                 </TableCell>
                 <TableCell component="th" scope="row" align="left">
-                  <Link
-                    to={`/displayemails/${row.emailId}`}
-                    data-id={row.emailId}
-                  >
+                  <Link to={`/emailspage/${row.emailId}`} data-id={row.emailId}>
                     {row.email}
                   </Link>
                 </TableCell>
@@ -88,7 +87,7 @@ function EmailsList() {
                     <DeleteIcon
                       className={classes.delete}
                       onClick={DeleteHandler}
-                      data-del={id}
+                      data-del={row.emailId}
                     />
                   </IconButton>
                 </TableCell>
