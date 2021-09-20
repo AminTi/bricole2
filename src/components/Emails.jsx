@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContextProvider";
 import UserKit from "../data/UserKit";
 import fire from "../config/fire";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   spacer: {
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Emails = () => {
+const Emails = (props) => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,10 +54,28 @@ const Emails = () => {
   const [open, setOpen] = useState(false);
   const userKit = new UserKit();
   const mailformat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-  const { check } = useContext(UserContext);
+  const { check, emails, getEmails } = useContext(UserContext);
+  const params = useParams();
+  let id = params.slug;
+
+  const currentUserEmails = emails.filter((elm) => {
+    return elm.emailId == id;
+  });
 
   const formClickHandler = async (e) => {
     e.preventDefault();
+  };
+
+  console.log(currentUserEmails.length > 0 && currentUserEmails);
+
+  useEffect(() => {
+    getEmails();
+  }, []);
+
+  const SendEmails = () => {
+    window.location = `mailto:${
+      currentUserEmails.length > 0 && currentUserEmails[0].email
+    }`;
   };
 
   return (
@@ -64,21 +83,21 @@ const Emails = () => {
       <form className={classes.form} onSubmit={formClickHandler}>
         <InputField
           placeholder={"Epost"}
-          onChange={(e) => null}
           type="email"
-          value={email}
+          value={currentUserEmails.length > 0 && currentUserEmails[0].email}
+          disabled
+        />
+        <InputField
+          placeholder={"Title"}
+          type="text"
+          value={currentUserEmails.length > 0 && currentUserEmails[0].title}
+          disabled
         />
         <InputField
           placeholder={"Password"}
-          onChange={(e) => null}
-          type="password"
-          value={password}
-        />
-        <InputField
-          placeholder={"Password"}
-          onChange={(e) => null}
-          type="password"
-          value={null}
+          type="text"
+          value={currentUserEmails.length > 0 && currentUserEmails[0].message}
+          disabled
           multiline
         />
         <Container className={classes.btn}>
@@ -86,7 +105,7 @@ const Emails = () => {
             text={"Replay"}
             value="submit"
             type="submit"
-            clickHandler={() => null}
+            clickHandler={SendEmails}
           />
         </Container>
       </form>

@@ -12,6 +12,7 @@ import DetailsIcon from "@material-ui/icons/Details";
 import Btn from "./Btn";
 import Box from "@material-ui/core/Box";
 import UserKit from "../data/UserKit";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,9 +89,11 @@ export default function RecipeReviewCard({
   emailClickHandler,
   setid,
   userId,
+  price,
 }) {
   const classes = useStyles();
   const userKit = new UserKit();
+  const history = useHistory();
 
   const DeleteHandler = async (e) => {
     const id = e.currentTarget.getAttribute("data-del");
@@ -99,6 +102,9 @@ export default function RecipeReviewCard({
     }
   };
 
+  const clickHandler = () => {
+    userId && history.push(`/reservationpage/${userId}/${price}`);
+  };
   userId && setid(userId);
   return (
     <>
@@ -131,7 +137,7 @@ export default function RecipeReviewCard({
             </IconButton>
 
             <IconButton className={show ? classes.show : classes.null}>
-              <Btn text={"Reserve"} size hide />
+              <Btn text={"Reserve"} size hide clickHandler={clickHandler} />
             </IconButton>
           </CardContent>
         </a>

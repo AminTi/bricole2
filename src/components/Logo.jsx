@@ -35,7 +35,7 @@ const Logo = ({ large, log }) => {
       <Typography
         className={large ? classes.newroot : log ? classes.log : classes.root}
       >
-        <span className={classes.note}>Notre</span>Quotidien
+        <span className={classes.note}>Quick</span>Fix
       </Typography>
     </>
   );

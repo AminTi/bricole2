@@ -87,6 +87,7 @@ const HomePage = () => {
                 photo={item.image}
                 profession={item.profession}
                 userId={item.id}
+                price={item.price}
                 emailClickHandler={clickHandler}
                 setOpen={setOpen}
                 setid={setID}

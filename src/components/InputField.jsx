@@ -28,6 +28,7 @@ const InputField = ({
   value,
   type,
   name,
+  disabled,
 }) => {
   const classes = useStyles();
 
@@ -35,6 +36,7 @@ const InputField = ({
   return (
     <>
       <TextField
+        disabled={disabled}
         id="outlined-basic"
         name={name}
         type={type}

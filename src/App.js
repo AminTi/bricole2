@@ -8,6 +8,7 @@ import PanelPage from "./pages/PanelPage";
 import UserProfilPge from "./pages/UserProfilPage";
 import EmailsPage from "./pages/EmailsPage";
 import Emailslistpage from "./pages/EmailsListPage";
+import ReservationPage from "./pages/ReservationPage";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
         <Route path="/userprofilpage" exact component={UserProfilPge} />
         <Route path="/emailspage/:slug" exact component={EmailsPage} />
         <Route path="/emailslistpage" exact component={Emailslistpage} />
+        <Route
+          path="/reservationpage/:slug/:price"
+          exact
+          component={ReservationPage}
+        />
       </Switch>
     </>
   );
