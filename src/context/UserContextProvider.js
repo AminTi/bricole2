@@ -105,12 +105,11 @@ const UserContenxtProvider = ({ children }) => {
             date: doc.data().date,
             adress: doc.data().adress,
             city: doc.data().city,
+            uid: doc.data().uid,
           };
           bookingsData.push({ ...payload });
-          console.log("arr", bookingsData);
         });
         setGetBooking(bookingsData);
-        console.log(bookingsData);
       });
   };
   return (

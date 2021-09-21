@@ -11,6 +11,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useParams } from "react-router-dom";
+import color from "../styles/color";
+
 const useStyles = makeStyles({
   wrapper: {
     display: "flex",
@@ -19,7 +22,7 @@ const useStyles = makeStyles({
     padding: "10px 10px",
     height: 600,
 
-    backgroundColor: "rgb(240, 245, 251)",
+    backgroundColor: color.white,
   },
   subWrapper: {
     display: "flex",
@@ -44,16 +47,20 @@ const useStyles = makeStyles({
     fontWeight: "bold",
   },
 });
-
-function BookingsDetails(props) {
+function BookingsDetails() {
   const classes = useStyles();
+  const params = useParams();
+  let id = params.slug;
+
   const { getBookings, bookings, check } = useContext(UserContext);
 
   const currentReservations =
     bookings &&
     bookings.filter((elm) => {
-      return elm.userid == check.uid;
+      return elm.id == id;
     });
+
+  console.log("details", bookings);
 
   useEffect(() => {
     getBookings();
@@ -70,9 +77,7 @@ function BookingsDetails(props) {
                   <TableBody>
                     <TableRow key={index}>
                       <TableCell className={classes.titles}> Name</TableCell>
-                      <TableCell align="right">
-                        {`${row.firstname} ${row.lastname}`}
-                      </TableCell>
+                      <TableCell align="right">{row.name}</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className={classes.titles}>
@@ -80,7 +85,7 @@ function BookingsDetails(props) {
                         Reservation
                       </TableCell>
                       <TableCell align="right" className={classes.reservation}>
-                        {row.bookingTime}
+                        {`${row.time} - ${row.date}`}
                       </TableCell>
                     </TableRow>
                     <TableRow>

@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { UserContext } from "../context/UserContextProvider";
 import UserKit from "../data/UserKit";
+import { v4 as uuidv4 } from "uuid";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -130,6 +131,7 @@ export default function BookingsModal({ open, setOpen, data }) {
       time: data.hour,
       date: data.date,
       city: city,
+      uid: uuidv4(),
     };
 
     (await payload) && (await userKit.createAds(payload, "bookings"));

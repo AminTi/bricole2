@@ -84,7 +84,7 @@ function BookingsList() {
                   {index}
                 </TableCell>
                 <TableCell component="th" scope="row" align="left">
-                  <Link to={`/bookingsDetailspage/${row.id}`}>{row.name}</Link>
+                  <Link to={`/bookingsdetailspage/${row.id}`}>{row.name}</Link>
                 </TableCell>
                 <TableCell component="th" scope="row" align="right">
                   <IconButton>

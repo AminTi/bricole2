@@ -31,7 +31,7 @@ function App() {
         />
         <Route path="/bookingsListpage" component={BookingsListPage} />
         <Route
-          path="/bookingsDetailspage/:slug"
+          path="/bookingsdetailspage/:slug"
           component={BookingsDetailsPage}
         />
       </Switch>
