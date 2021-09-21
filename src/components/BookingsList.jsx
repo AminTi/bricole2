@@ -14,21 +14,24 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import UserKit from "../data/UserKit";
 import color from "../styles/color";
+import UserKit from "../data/UserKit";
 
 const useStyles = makeStyles({
-  table: {},
+  table: {
+    minWidth: "90%",
+  },
   wrapper: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     padding: "20px 10px",
-    // justifyContent: "center",
+    justifyContent: "center",
+
     backgroundColor: color.white,
     minHeight: 800,
-    marginBottom: "5%",
     width: "90%",
+    marginBottom: "5px",
   },
   delete: {
     color: "red",
@@ -38,57 +41,57 @@ const useStyles = makeStyles({
 function createData(index, email, Delete) {
   return { index, email, Delete };
 }
-function EmailsList() {
+function BookingsList() {
   const classes = useStyles();
   const history = useHistory();
   const userKit = new UserKit();
 
-  const { check, emails, getEmails } = useContext(UserContext);
+  const { getBookings, bookings, check } = useContext(UserContext);
 
   const id = check && check.uid;
-  const currentUserEmails = emails.filter((elm) => {
+  const currentUser = bookings.filter((elm) => {
     return elm.userid == id;
   });
-  useEffect(() => {
-    getEmails();
-  }, []);
 
   const DeleteHandler = async (e) => {
     const id = e.currentTarget.getAttribute("data-del");
     if (id) {
-      userKit.deleteData(id, "emails");
-      getEmails();
+      userKit.deleteData(id, "bookings");
+      getBookings();
     }
   };
 
+  useEffect(() => {
+    getBookings();
+  }, []);
+
+  console.log("currentuser", bookings);
   return (
-    <Container className={classes.wrapper} maxWidth="xl">
+    <Container className={classes.wrapper}>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Index</TableCell>
-              <TableCell align="left">email</TableCell>
+              <TableCell align="left">Name</TableCell>
               <TableCell align="right">Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {currentUserEmails.map((row, index) => (
+            {currentUser.map((row, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
                   {index}
                 </TableCell>
                 <TableCell component="th" scope="row" align="left">
-                  <Link to={`/emailspage/${row.emailId}`} data-id={row.emailId}>
-                    {row.email}
-                  </Link>
+                  <Link to={`/bookingsDetailspage/${row.id}`}>{row.name}</Link>
                 </TableCell>
                 <TableCell component="th" scope="row" align="right">
                   <IconButton>
                     <DeleteIcon
                       className={classes.delete}
                       onClick={DeleteHandler}
-                      data-del={row.emailId}
+                      data-del={row.id}
                     />
                   </IconButton>
                 </TableCell>
@@ -101,4 +104,4 @@ function EmailsList() {
   );
 }
 
-export default EmailsList;
+export default BookingsList;

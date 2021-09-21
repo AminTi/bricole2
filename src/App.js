@@ -9,23 +9,30 @@ import UserProfilPge from "./pages/UserProfilPage";
 import EmailsPage from "./pages/EmailsPage";
 import Emailslistpage from "./pages/EmailsListPage";
 import ReservationPage from "./pages/ReservationPage";
+import BookingsDetailsPage from "./pages/BookingsDetailsPage";
+import BookingsListPage from "./pages/BookingsListPage";
 
 function App() {
   return (
     <>
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/panelpage" exact component={PanelPage} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signuppage" exact component={SignUpPage} />
-        <Route path="/profilpage" exact component={ProfilePage} />
-        <Route path="/userprofilpage" exact component={UserProfilPge} />
-        <Route path="/emailspage/:slug" exact component={EmailsPage} />
-        <Route path="/emailslistpage" exact component={Emailslistpage} />
+        <Route path="/panelpage" component={PanelPage} />
+        <Route path="/login" component={Login} />
+        <Route path="/signuppage" component={SignUpPage} />
+        <Route path="/profilpage" component={ProfilePage} />
+        <Route path="/userprofilpage" component={UserProfilPge} />
+        <Route path="/emailspage/:slug" component={EmailsPage} />
+        <Route path="/emailslistpage" component={Emailslistpage} />
         <Route
           path="/reservationpage/:slug/:price"
           exact
           component={ReservationPage}
+        />
+        <Route path="/bookingsListpage" component={BookingsListPage} />
+        <Route
+          path="/bookingsDetailspage/:slug"
+          component={BookingsDetailsPage}
         />
       </Switch>
     </>

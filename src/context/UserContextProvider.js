@@ -10,10 +10,12 @@ const UserContenxtProvider = ({ children }) => {
   const [adsData, setAdsData] = useState([]);
   const [getLocalStorg, setGetLocalStorage] = useState([]);
   const [emails, setGetEmails] = useState([]);
+  const [bookings, setGetBooking] = useState([]);
 
   let arr = [];
   let adsArr = [];
   let emailsData = [];
+  let bookingsData = [];
 
   const authListnner = () => {
     fire.auth().onAuthStateChanged((user) => {
@@ -84,6 +86,33 @@ const UserContenxtProvider = ({ children }) => {
         setGetEmails(emailsData);
       });
   };
+
+  const getBookings = async () => {
+    await fire
+      .firestore()
+      .collection("bookings")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc, key) => {
+          let payload = {
+            id: doc.id,
+            name: doc.data().name,
+            total: doc.data().total,
+            email: doc.data().email,
+            userid: doc.data().id,
+            mobile: doc.data().mobile,
+            time: doc.data().time,
+            date: doc.data().date,
+            adress: doc.data().adress,
+            city: doc.data().city,
+          };
+          bookingsData.push({ ...payload });
+          console.log("arr", bookingsData);
+        });
+        setGetBooking(bookingsData);
+        console.log(bookingsData);
+      });
+  };
   return (
     <UserContext.Provider
       value={{
@@ -93,10 +122,12 @@ const UserContenxtProvider = ({ children }) => {
         getLocalStorg,
         emails,
         arr,
+        bookings,
         getEmails,
         setGetLocalStorage,
         getCollection,
         GetAds,
+        getBookings,
       }}
     >
       {children}

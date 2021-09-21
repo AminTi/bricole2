@@ -84,7 +84,7 @@ export default function Drawer({ openDrawer, setOpen }) {
     },
     {
       text: (
-        <Link to="/" className={classes.links}>
+        <Link to="/bookingsListpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
             BOOKINGS
           </Typography>
