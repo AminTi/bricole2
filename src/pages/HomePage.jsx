@@ -69,7 +69,6 @@ const HomePage = () => {
   };
   const clickHandler = (e) => {
     setOpen(true);
-    console.log(ID);
   };
 
   return (
@@ -88,6 +87,7 @@ const HomePage = () => {
                 profession={item.profession}
                 userId={item.id}
                 price={item.price}
+                docId={item.docID}
                 emailClickHandler={clickHandler}
                 setOpen={setOpen}
                 setid={setID}

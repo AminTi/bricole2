@@ -90,10 +90,18 @@ export default function RecipeReviewCard({
   setid,
   userId,
   price,
+  docId,
 }) {
   const classes = useStyles();
   const userKit = new UserKit();
   const history = useHistory();
+
+  const detailsClickHandel = (e) => {
+    const id = e.currentTarget.getAttribute("data-det");
+    if (id) {
+      history.push(`/detailspage/${id}`);
+    }
+  };
 
   const DeleteHandler = async (e) => {
     const id = e.currentTarget.getAttribute("data-del");
@@ -105,6 +113,7 @@ export default function RecipeReviewCard({
   const clickHandler = () => {
     userId && history.push(`/reservationpage/${userId}/${price}`);
   };
+
   userId && setid(userId);
   return (
     <>
@@ -120,7 +129,7 @@ export default function RecipeReviewCard({
 
           <CardContent className={classes.text}>
             <IconButton className={classes.details}>
-              <DetailsIcon />
+              <DetailsIcon data-det={docId} onClick={detailsClickHandel} />
             </IconButton>
             <IconButton>
               <DeleteIcon

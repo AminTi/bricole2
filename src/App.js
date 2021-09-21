@@ -11,6 +11,7 @@ import Emailslistpage from "./pages/EmailsListPage";
 import ReservationPage from "./pages/ReservationPage";
 import BookingsDetailsPage from "./pages/BookingsDetailsPage";
 import BookingsListPage from "./pages/BookingsListPage";
+import DetailsPage from "./pages/DetailsPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           path="/bookingsdetailspage/:slug"
           component={BookingsDetailsPage}
         />
+        <Route path="/detailspage/:slug" component={DetailsPage} />
       </Switch>
     </>
   );
