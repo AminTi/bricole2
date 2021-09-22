@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import color from "../styles/color";
 import Card from "@material-ui/core/Card";
@@ -13,6 +13,7 @@ import Btn from "./Btn";
 import Box from "@material-ui/core/Box";
 import UserKit from "../data/UserKit";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/UserContextProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,6 +96,7 @@ export default function RecipeReviewCard({
   const classes = useStyles();
   const userKit = new UserKit();
   const history = useHistory();
+  const { check, GetAds } = useContext(UserContext);
 
   const detailsClickHandel = (e) => {
     const id = e.currentTarget.getAttribute("data-det");
@@ -115,6 +117,9 @@ export default function RecipeReviewCard({
   };
 
   userId && setid(userId);
+
+  useEffect(() => {}, []);
+
   return (
     <>
       <Card className={classes.root} key={key}>
