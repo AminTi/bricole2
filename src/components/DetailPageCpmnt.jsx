@@ -30,9 +30,24 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px 10px",
     margin: "1%",
   },
+  price: {
+    padding: "10px 10px",
+    margin: "1%",
+    color: color.green,
+    fontWeight: "bold",
+  },
 }));
 
-const DetailPageCpmnt = ({ img, setopen, setid, userId, price }) => {
+const DetailPageCpmnt = ({
+  img,
+  setopen,
+  setid,
+  userId,
+  price,
+  title,
+  profession,
+  description,
+}) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -52,21 +67,17 @@ const DetailPageCpmnt = ({ img, setopen, setid, userId, price }) => {
       <Image img={img} />
       <Box className={classes.headerBox}>
         <Paper elevation={3} className={classes.papper}>
-          Amin
+          {profession}
         </Paper>
-        <Paper elevation={3} className={classes.papper}>
-          {" "}
-          Titi
+        <Paper elevation={3} className={classes.price}>
+          {`${price} Kr/tim`}
         </Paper>
       </Box>
       <Paper elevation={3} className={classes.papper}>
-        Nawal
+        {title}
       </Paper>
       <Paper elevation={3} className={classes.papper}>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem,
-        praesentium! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Dolorem, praesentium! Lorem ipsum dolor sit amet consectetur,
-        adipisicing elit. Dolorem, praesentium!
+        {description}
       </Paper>
       <Box className={classes.btn}>
         <div>

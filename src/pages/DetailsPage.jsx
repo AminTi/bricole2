@@ -50,8 +50,6 @@ const DetailsPage = () => {
     GetAds();
   }, []);
 
-  console.log(data);
-
   return (
     <div className={classes.container}>
       <Grid
