@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Reserve from "../components/Resrve";
 import { UserContext } from "../context/UserContextProvider";
 import BookingsModal from "../components/BookingsModal";
+import BackBtn from "../components/BackBtn";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -38,21 +39,25 @@ const ReservationPage = () => {
 
   console.log("NEW", data);
   return (
-    <div className={classes.container}>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box className={classes.spacer2} />
-        <Logo large />
-        <Box className={classes.spacer2} />
-        <Reserve open={open} setOpen={setOpen} setData={setData} />
-        <Box className={classes.spacer2} />
-        <BookingsModal open={open} setOpen={setOpen} data={data} />
-      </Grid>
-    </div>
+    <>
+      <BackBtn />
+      <div className={classes.container}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box className={classes.spacer2} />
+          <Logo large />
+          <Box className={classes.spacer2} />
+          <Reserve open={open} setOpen={setOpen} setData={setData} />
+          <Box className={classes.spacer2} />
+
+          <BookingsModal open={open} setOpen={setOpen} data={data} />
+        </Grid>
+      </div>
+    </>
   );
 };
 

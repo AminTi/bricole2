@@ -13,6 +13,7 @@ import DetailPageCpmnt from "../components/DetailPageCpmnt";
 import BookingsModal from "../components/BookingsModal";
 import ModalEmail from "../components/ModalEmail";
 import { useParams } from "react-router-dom";
+import BackBtn from "../components/BackBtn";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -51,37 +52,40 @@ const DetailsPage = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box className={classes.spacer1} />
-        <Logo large />
-        <Box className={classes.spacer2} />
+    <>
+      <BackBtn />
+      <div className={classes.container}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box className={classes.spacer1} />
+          <Logo large />
+          <Box className={classes.spacer2} />
 
-        {data &&
-          data.map((item) => {
-            return (
-              <DetailPageCpmnt
-                title={item.title}
-                profession={item.profession}
-                img={item.image}
-                description={item.description}
-                price={item.price}
-                setopen={setOpen}
-                setid={setID}
-                userId={item.id}
-                price={item.price}
-              />
-            );
-          })}
-        <ModalEmail open={open} setOpen={setOpen} id={ID} />
-        <BookingsModal open={open} setOpen={setOpen} id={ID} />
-      </Grid>
-    </div>
+          {data &&
+            data.map((item) => {
+              return (
+                <DetailPageCpmnt
+                  title={item.title}
+                  profession={item.profession}
+                  img={item.image}
+                  description={item.description}
+                  price={item.price}
+                  setopen={setOpen}
+                  setid={setID}
+                  userId={item.id}
+                  price={item.price}
+                />
+              );
+            })}
+          <ModalEmail open={open} setOpen={setOpen} id={ID} />
+          <BookingsModal open={open} setOpen={setOpen} id={ID} />
+        </Grid>
+      </div>
+    </>
   );
 };
 
