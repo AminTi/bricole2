@@ -119,8 +119,8 @@ export default function RecipeReviewCard({
     <>
       <Card className={classes.root} key={key}>
         <CardHeader
-          title={""}
-          subheader={profession}
+          title={profession}
+          subheader={`${price} Kr/tim`}
           className={classes.cardHeader}
         />
 
