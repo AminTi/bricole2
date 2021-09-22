@@ -49,6 +49,7 @@ const useStyles = makeStyles({
 });
 function BookingsDetails() {
   const classes = useStyles();
+
   const params = useParams();
   let id = params.slug;
 

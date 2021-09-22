@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
 import SingUpForm from "../components/SingUpForm";
 import Wrapper from "../components/Wrapper";
@@ -7,8 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import Logo from "../components/Logo";
 import { Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
-
 import { UserContext } from "../context/UserContextProvider";
+
+import DetailPageCpmnt from "../components/DetailPageCpmnt";
+import BookingsModal from "../components/BookingsModal";
+import ModalEmail from "../components/ModalEmail";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -31,8 +35,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 const DetailsPage = () => {
   const classes = useStyles();
-  const { check, adsData } = useContext(UserContext);
-  console.log("detailsPAge", adsData);
+  const [open, setOpen] = useState(false);
+  const [ID, setID] = useState("");
+  const { check, adsData, GetAds } = useContext(UserContext);
+
+  const params = useParams();
+  let id = params.slug;
+
+  const data = adsData.filter((item) => {
+    return item.docID == id;
+  });
+
+  useEffect(() => {
+    GetAds();
+  }, []);
+
+  console.log(data);
+
   return (
     <div className={classes.container}>
       <Grid
@@ -44,6 +63,25 @@ const DetailsPage = () => {
         <Box className={classes.spacer1} />
         <Logo large />
         <Box className={classes.spacer2} />
+
+        {data &&
+          data.map((item) => {
+            return (
+              <DetailPageCpmnt
+                title={item.title}
+                profession={item.profession}
+                img={item.image}
+                description={item.description}
+                price={item.price}
+                setopen={setOpen}
+                setid={setID}
+                userId={item.id}
+                price={item.price}
+              />
+            );
+          })}
+        <ModalEmail open={open} setOpen={setOpen} id={ID} />
+        <BookingsModal open={open} setOpen={setOpen} id={ID} />
       </Grid>
     </div>
   );

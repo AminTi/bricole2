@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100%",
   },
 }));
-const Image = (img) => {
+const Image = ({ img }) => {
   const classes = useStyles();
   return (
     <div>
