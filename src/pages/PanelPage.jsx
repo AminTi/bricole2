@@ -92,6 +92,8 @@ const PanelPage = () => {
                 photo={item.image}
                 profession={item.profession}
                 id={item.docID}
+                price={item.price}
+                docId={item.docID}
                 show
               />
             );

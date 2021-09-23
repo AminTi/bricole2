@@ -86,13 +86,13 @@ const LoginFrom = () => {
           placeholder={"Epost"}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
-          value={email}
+          value={"quickfix@hotmail.com"}
         />
         <InputField
           placeholder={"Password"}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
-          value={password}
+          value={"amintiti"}
         />
         <Container className={classes.btn}>
           <Btn
