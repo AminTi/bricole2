@@ -61,12 +61,13 @@ const HomePage = () => {
   });
 
   const DataCheck = () => {
-    if (filterData.length === 0) {
+    if (getLocalStorg == "all") {
       return adsData;
     } else {
       return filterData;
     }
   };
+
   const clickHandler = (e) => {
     setOpen(true);
   };

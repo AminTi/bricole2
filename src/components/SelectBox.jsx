@@ -46,10 +46,10 @@ export default function SelectBox({ data }) {
   const { setGetLocalStorage } = useContext(UserContext);
 
   const handleChange = async (e) => {
-    setGetLocalStorage("");
     localStorage.clear();
     await localStorage.setItem("search", e.target.value);
     await setGetLocalStorage(localStorage.getItem("search"));
+    localStorage.clear();
   };
 
   const arrCity = [];
@@ -89,7 +89,7 @@ export default function SelectBox({ data }) {
           onChange={handleChange}
           label="City"
         >
-          <MenuItem className={classes.style} value={null}>
+          <MenuItem className={classes.style} value={"all"}>
             ------
           </MenuItem>
           {filterCity.map((item, index) => {
@@ -113,7 +113,7 @@ export default function SelectBox({ data }) {
           onChange={handleChange}
           label="City"
         >
-          <MenuItem value={null}>------</MenuItem>
+          <MenuItem value={"all"}>------</MenuItem>
           {data &&
             filterPro.map((item, index) => {
               return (
