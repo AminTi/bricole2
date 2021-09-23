@@ -61,7 +61,7 @@ const HomePage = () => {
   });
 
   const DataCheck = () => {
-    if (getLocalStorg == "all") {
+    if (getLocalStorg == "all" || getLocalStorg == "") {
       return adsData;
     } else {
       return filterData;
