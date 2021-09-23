@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginFrom = () => {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("quickfix@hotmail.com");
+  const [password, setPassword] = useState("amintiti");
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const userKit = new UserKit();
@@ -86,13 +86,13 @@ const LoginFrom = () => {
           placeholder={"Epost"}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
-          value={"quickfix@hotmail.com"}
+          value={email}
         />
         <InputField
           placeholder={"Password"}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
-          value={"amintiti"}
+          value={password}
         />
         <Container className={classes.btn}>
           <Btn
