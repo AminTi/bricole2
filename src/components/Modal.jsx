@@ -147,6 +147,7 @@ export default function SimpleModal({ open, setOpen }) {
 
   useEffect(() => {
     getCollection("users", check.uid);
+    GetAds();
   }, []);
 
   const body = (

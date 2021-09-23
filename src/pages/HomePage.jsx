@@ -61,7 +61,7 @@ const HomePage = () => {
   });
 
   const DataCheck = () => {
-    if (filterData.length == 0) {
+    if (filterData.length === 0) {
       return adsData;
     } else {
       return filterData;

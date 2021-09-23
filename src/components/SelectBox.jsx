@@ -52,6 +52,26 @@ export default function SelectBox({ data }) {
     await setGetLocalStorage(localStorage.getItem("search"));
   };
 
+  const arrCity = [];
+
+  data.map((item) => {
+    arrCity.push(item.city);
+  });
+
+  const filterCity = arrCity.filter((item, pos) => {
+    return arrCity.indexOf(item) == pos;
+  });
+
+  const arrPro = [];
+
+  data.map((item) => {
+    arrPro.push(item.profession);
+  });
+
+  const filterPro = arrPro.filter((item, pos) => {
+    return arrPro.indexOf(item) == pos;
+  });
+
   return (
     <>
       <FormControl variant="outlined" className={classes.formControl}>
@@ -72,18 +92,13 @@ export default function SelectBox({ data }) {
           <MenuItem className={classes.style} value={null}>
             ------
           </MenuItem>
-          {data &&
-            data.map((item, index) => {
-              return (
-                <MenuItem
-                  value={item.city}
-                  key={index}
-                  className={classes.style}
-                >
-                  {item.city}
-                </MenuItem>
-              );
-            })}
+          {filterCity.map((item, index) => {
+            return (
+              <MenuItem value={item} key={index} className={classes.style}>
+                {item}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
@@ -100,10 +115,10 @@ export default function SelectBox({ data }) {
         >
           <MenuItem value={null}>------</MenuItem>
           {data &&
-            data.map((item, index) => {
+            filterPro.map((item, index) => {
               return (
-                <MenuItem value={item.profession} key={index}>
-                  {item.profession}
+                <MenuItem value={item} key={index}>
+                  {item}
                 </MenuItem>
               );
             })}

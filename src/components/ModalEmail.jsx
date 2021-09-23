@@ -81,6 +81,7 @@ export default function ModalEmail({ open, setOpen, id }) {
   const [title, setTitle] = useState("");
   const [Email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [scusses, setScusses] = useState(false);
 
   const { check } = useContext(UserContext);
   const userKit = new UserKit();
@@ -104,6 +105,7 @@ export default function ModalEmail({ open, setOpen, id }) {
     } else {
       collection();
       setOpen(false);
+      setScusses(true);
     }
 
     setTitle("");
@@ -183,6 +185,12 @@ export default function ModalEmail({ open, setOpen, id }) {
         closeBar={setErr}
         severity={"error"}
         text={" All fields are required"}
+      />
+      <Snackbars
+        openBar={scusses}
+        closeBar={setScusses}
+        severity={"success"}
+        text={"Your message has been sent successfully"}
       />
     </>
   );

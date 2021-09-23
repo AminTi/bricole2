@@ -12,6 +12,7 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { UserContext } from "../context/UserContextProvider";
 import UserKit from "../data/UserKit";
 import { v4 as uuidv4 } from "uuid";
+import { useHistory } from "react-router-dom";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -84,6 +85,7 @@ export default function BookingsModal({ open, setOpen, data }) {
   const [adress, setAdress] = useState("");
   const [city, setCity] = useState("");
   const mailformat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  const history = useHistory();
 
   const { check } = useContext(UserContext);
   const userKit = new UserKit();
@@ -111,6 +113,7 @@ export default function BookingsModal({ open, setOpen, data }) {
     } else {
       collection();
       setOpen(false);
+      history.push("/");
     }
 
     setName("");
