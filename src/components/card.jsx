@@ -17,7 +17,7 @@ import { UserContext } from "../context/UserContextProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 300,
+    width: 250,
     margin: "1%",
     borderRadius: "10px",
     // "&:hover": {
