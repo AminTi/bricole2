@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Logo from "../components/Logo";
 import { Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import BackBtn from "../components/BackBtn";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,22 +31,25 @@ const useStyles = makeStyles((theme) => ({
 const LogIn = () => {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box className={classes.spacer1} />
-        <Logo large />
-        <Box className={classes.spacer2} />
-        <Link to="/signuppage" className={classes.Link}>
-          Create your Account
-        </Link>
-        <LoginFrom />
-      </Grid>
-    </div>
+    <>
+      <BackBtn />
+      <div className={classes.container}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box className={classes.spacer1} />
+          <Logo large />
+          <Box className={classes.spacer2} />
+          <Link to="/signuppage" className={classes.Link}>
+            Create your Account
+          </Link>
+          <LoginFrom />
+        </Grid>
+      </div>
+    </>
   );
 };
 

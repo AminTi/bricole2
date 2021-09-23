@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Logo from "../components/Logo";
 import { Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import BackBtn from "../components/BackBtn";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,18 +31,21 @@ const useStyles = makeStyles((theme) => ({
 const ProfilePage = () => {
   const classes = useStyles();
   return (
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      className={classes.container}
-    >
-      <Box className={classes.spacer1} />
-      <Logo large />
-      <Box className={classes.spacer2} />
-      <ProfilForm />
-    </Grid>
+    <>
+      <BackBtn />
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        className={classes.container}
+      >
+        <Box className={classes.spacer1} />
+        <Logo large />
+        <Box className={classes.spacer2} />
+        <ProfilForm />
+      </Grid>
+    </>
   );
 };
 
