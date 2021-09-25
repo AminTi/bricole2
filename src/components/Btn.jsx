@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
 
   admin: {
     display: "block",
+    color: color.white,
+    background: color.red,
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
@@ -25,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
     background: color.green,
   },
 }));
+
+//btns
 
 const Btn = ({ text, clickHandler, admin, type, value, path, size }) => {
   const classes = useStyles();
