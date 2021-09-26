@@ -108,7 +108,8 @@ export default function RecipeReviewCard({
   const DeleteHandler = async (e) => {
     const id = e.currentTarget.getAttribute("data-del");
     if (id) {
-      userKit.deleteData(id, "advertising");
+      await userKit.deleteData(id, "advertising");
+      await GetAds;
     }
   };
 
