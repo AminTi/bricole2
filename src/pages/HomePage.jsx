@@ -50,7 +50,8 @@ const HomePage = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [ID, setID] = useState("");
-  const { adsData, GetAds, getLocalStorg } = useContext(UserContext);
+  const { adsData, GetAds, getLocalStorg, setGetLocalStorage } =
+    useContext(UserContext);
 
   useEffect(() => {
     GetAds();
@@ -61,7 +62,7 @@ const HomePage = () => {
   });
 
   const DataCheck = () => {
-    if (getLocalStorg == "all" || getLocalStorg == "") {
+    if (getLocalStorg === "all" || getLocalStorg === "") {
       return adsData;
     } else {
       return filterData;

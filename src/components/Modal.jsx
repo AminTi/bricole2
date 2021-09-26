@@ -109,8 +109,8 @@ export default function SimpleModal({ open, setOpen }) {
       setErr(true);
     } else {
       collection();
-
       setOpen(false);
+      GetAds();
     }
 
     setTitle("");
@@ -140,14 +140,12 @@ export default function SimpleModal({ open, setOpen }) {
       city: profilData.payload.city,
     };
     if (check) {
-      data && (await userKit.createAds(data, "advertising"));
+      data && userKit.createAds(data, "advertising");
     }
-    GetAds();
   };
 
   useEffect(() => {
     getCollection("users", check.uid);
-    GetAds();
   }, []);
 
   const body = (

@@ -90,7 +90,7 @@ export default function SelectBox({ data }) {
           label="City"
         >
           <MenuItem className={classes.style} value={"all"}>
-            ------
+            All
           </MenuItem>
           {filterCity.map((item, index) => {
             return (
@@ -113,7 +113,7 @@ export default function SelectBox({ data }) {
           onChange={handleChange}
           label="City"
         >
-          <MenuItem value={"all"}>------</MenuItem>
+          <MenuItem value={"all"}> All </MenuItem>
           {data &&
             filterPro.map((item, index) => {
               return (

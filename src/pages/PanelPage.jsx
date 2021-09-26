@@ -75,7 +75,6 @@ const PanelPage = () => {
     return item.id == check.uid;
   });
 
-  console.log(filterData);
   return (
     <div className={classes.container}>
       <Container className={classes.containerFab}>
