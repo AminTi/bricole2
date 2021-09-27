@@ -61,6 +61,7 @@ const HomePage = () => {
     return item.city === getLocalStorg || item.profession === getLocalStorg;
   });
 
+  console.log("test", filterData);
   const DataCheck = () => {
     if (getLocalStorg === "all" || getLocalStorg === "") {
       return adsData;

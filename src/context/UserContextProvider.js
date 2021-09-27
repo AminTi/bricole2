@@ -8,7 +8,7 @@ const UserContenxtProvider = ({ children }) => {
   const [check, setCheck] = useState("");
   const [profilData, setProfilData] = useState("");
   const [adsData, setAdsData] = useState([]);
-  const [getLocalStorg, setGetLocalStorage] = useState("");
+  const [getLocalStorg, setGetLocalStorage] = useState("all");
   const [emails, setGetEmails] = useState([]);
   const [bookings, setGetBooking] = useState([]);
 

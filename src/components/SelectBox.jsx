@@ -46,7 +46,6 @@ export default function SelectBox({ data }) {
   const { setGetLocalStorage } = useContext(UserContext);
 
   const handleChange = async (e) => {
-    localStorage.clear();
     await localStorage.setItem("search", e.target.value);
     await setGetLocalStorage(localStorage.getItem("search"));
     localStorage.clear();

@@ -58,10 +58,11 @@ const NavBar = ({ text }) => {
   const userKit = new UserKit();
   const history = useHistory();
   const [btnText, setBtnText] = useState("Log in");
-  const { check, amin } = useContext(UserContext);
+  const { check, setGetLocalStorage } = useContext(UserContext);
 
   const MenuHandler = () => {
     setOpen(true);
+    setGetLocalStorage("all");
   };
 
   const singInSingOut = () => {
