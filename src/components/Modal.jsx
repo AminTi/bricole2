@@ -12,6 +12,7 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { UserContext } from "../context/UserContextProvider";
 import UserKit from "../data/UserKit";
 import fire from "../config/fire";
+import { v4 as uuidv4 } from "uuid";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -123,7 +124,7 @@ export default function SimpleModal({ open, setOpen }) {
   const onFileChange = async (e) => {
     const file = e.target.files[0];
     const storagRef = fire.storage().ref();
-    const fileRef = storagRef.child(file.name);
+    const fileRef = storagRef.child(`${uuidv4()}/${file.name}`);
     await fileRef.put(file);
     const fileUrl = await fileRef.getDownloadURL();
     setImage(fileUrl);
