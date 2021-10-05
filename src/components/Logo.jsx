@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   newroot: {
     color: color.black,
     fontWeight: "bolder",
-    fontSize: "34px",
+    fontSize: "50px",
   },
 
   log: {
