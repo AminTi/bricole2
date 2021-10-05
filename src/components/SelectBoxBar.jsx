@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
     // justifyContent: "space-around",
     width: "70%",
     margin: "0 auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "unset",
+    },
   },
 
   tlbr: {

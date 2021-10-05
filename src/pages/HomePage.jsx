@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "5%",
     background: color.white,
     padding: "50px",
+    [theme.breakpoints.down("sm")]: {
+      padding: "0px",
+    },
   },
   wrp: {
     display: "flex",
