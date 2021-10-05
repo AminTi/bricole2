@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
     // background: color.white,
     // flexDirection: "row",
     // justifyContent: "space-around",
+    width: "70%",
+    margin: "0 auto",
   },
 
   tlbr: {

@@ -30,8 +30,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
 
-    padding: "20px 0px",
-    margin: "2%",
+    padding: "150px 0px",
   },
   cardWrapper: {
     display: "flex",
@@ -40,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     margin: "5%",
     background: color.white,
+    padding: "50px",
   },
   wrp: {
     display: "flex",
