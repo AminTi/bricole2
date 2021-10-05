@@ -29,8 +29,6 @@ const useStyles = makeStyles((theme) => ({
   logoWrp: {
     display: "flex",
     justifyContent: "center",
-
-    padding: "150px 0px",
   },
   cardWrapper: {
     display: "flex",

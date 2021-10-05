@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     color: color.black,
     fontWeight: "bolder",
     fontSize: "50px",
+    padding: "100px 0px",
   },
 
   log: {
