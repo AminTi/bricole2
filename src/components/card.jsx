@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    background: color.lightRed,
+    // background: color.lightRed,
     [theme.breakpoints.down("xs")]: {},
   },
   // box: {
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
   },
   cardHeader: {
-    background: color.lightRed,
+    // background: color.lightRed,
   },
   delete: {
     color: "red",

@@ -50,7 +50,7 @@ export default function Drawer({ openDrawer, setOpen }) {
       text: (
         <Link to="/" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            HOME
+            Home
           </Typography>
         </Link>
       ),
@@ -59,7 +59,7 @@ export default function Drawer({ openDrawer, setOpen }) {
       text: (
         <Link to="/panelpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            PANEL
+            Panel
           </Typography>
         </Link>
       ),
@@ -68,7 +68,7 @@ export default function Drawer({ openDrawer, setOpen }) {
       text: (
         <Link to="/userprofilpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            PROFIL
+            Profil
           </Typography>
         </Link>
       ),
@@ -77,7 +77,7 @@ export default function Drawer({ openDrawer, setOpen }) {
       text: (
         <Link to="/emailslistpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            INBOX
+            Inbox
           </Typography>
         </Link>
       ),
@@ -86,7 +86,7 @@ export default function Drawer({ openDrawer, setOpen }) {
       text: (
         <Link to="/bookingsListpage" className={classes.links}>
           <Typography variant="h6" className={classes.links1}>
-            BOOKINGS
+            Bookings
           </Typography>
         </Link>
       ),
