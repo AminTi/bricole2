@@ -46,9 +46,13 @@ function EmailsList() {
   const { check, emails, getEmails } = useContext(UserContext);
 
   const id = check && check.uid;
-  const currentUserEmails = emails.filter((elm) => {
-    return elm.userid == id;
-  });
+
+  const currentUserEmails =
+    emails &&
+    emails.filter((elm) => {
+      return elm.userid == id;
+    });
+
   useEffect(() => {
     getEmails();
   }, []);
