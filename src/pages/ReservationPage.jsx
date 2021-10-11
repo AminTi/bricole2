@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10%",
   },
   spacer2: {
-    marginTop: "5%",
+    marginTop: "2%",
   },
   Link: {
     padding: "5px 5px",

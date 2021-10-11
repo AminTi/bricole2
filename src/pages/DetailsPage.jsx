@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   spacer1: {
-    marginTop: "10%",
+    marginTop: "2%",
   },
   spacer2: {
-    marginTop: "5%",
+    marginTop: "2%",
   },
   Link: {
     padding: "5px 5px",
@@ -82,7 +82,7 @@ const DetailsPage = () => {
               );
             })}
           <ModalEmail open={open} setOpen={setOpen} id={ID} />
-          <BookingsModal open={open} setOpen={setOpen} id={ID} />
+          <BookingsModal id={ID} />
         </Grid>
       </div>
     </>

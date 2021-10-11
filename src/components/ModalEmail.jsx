@@ -120,7 +120,6 @@ export default function ModalEmail({ open, setOpen, id }) {
       email: Email,
       id: check.uid,
     };
-
     (await data) && (await userKit.createAds(data, "emails"));
   };
 
