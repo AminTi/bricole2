@@ -31,7 +31,7 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: "10%",
+    marginTop: "5%",
     margin: "0 auto",
     width: "50%",
     backgroundColor: theme.palette.background.paper,
